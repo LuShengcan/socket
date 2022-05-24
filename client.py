@@ -60,6 +60,10 @@ def connect(host, port):
     port = PORT
     client = socket(AF_INET, SOCK_STREAM)
     client.connect((host, port))
+    
+    chatWindow = tk.Tk()
+    
+
 
     Thread(target=sendHeartBeat, args=(client,)).start()
     Thread(target=msgReceive, args=(dataBuf, client)).start()
