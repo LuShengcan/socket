@@ -41,7 +41,7 @@ def workThread(dataBuf:bytes, conn:socket):
 
 if __name__ == '__main__':
     server = socket(AF_INET, SOCK_STREAM)
-    server.bind((HOST, PORT))
+    server.bind(('192.168.1.104', PORT))
     server.listen(5)
 
     while 1:

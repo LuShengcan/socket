@@ -35,6 +35,7 @@ def workThread(dataBuf:bytes, conn:socket):
                 for client in clients:
                     if client != conn:
                         client.send(packData(MSG, nickname+' has entered'))
+                # print(1111)
             else:
                 print('default')
             dataBuf = dataBuf[HEADSIZE+bodyLen:]
@@ -42,12 +43,11 @@ def workThread(dataBuf:bytes, conn:socket):
 if __name__ == '__main__':
     server = socket(AF_INET, SOCK_STREAM)
     server.bind((HOST, PORT))
-    server.listen(5)
+    server.listen(10)
 
     while 1:
         conn, clientAddr = server.accept()
         print(clientAddr, ' has connected!')
-        conn.send(packData(LOG_IN, 'welcome and input your nickname: '))
         clients[conn] = ''
         dataBuf[conn] = bytes()
         Thread(target=workThread, args=(dataBuf[conn], conn)).start()

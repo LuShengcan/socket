@@ -57,7 +57,7 @@ def msgSend(client:socket):
 
 if __name__ == '__main__':
     client = socket(AF_INET, SOCK_STREAM)
-    client.connect((HOST, PORT))
+    client.connect(('192.168.1.104', PORT))
     Thread(target=sendHeartBeat, args=(client,)).start()
     Thread(target=msgReceive, args=(dataBuf, client)).start()
     Thread(target=msgSend, args=(client,)).start()
